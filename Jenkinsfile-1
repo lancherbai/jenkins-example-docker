@@ -1,0 +1,19 @@
+pipeline {
+    agent {
+        docker { image 'node:16-alpine' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                    sh 'node --version'
+            }
+        }
+        stage('Keep') {
+            steps {
+                script {
+                    currentBuild.keepLog = true
+                }
+            }
+        }
+    }
+}
